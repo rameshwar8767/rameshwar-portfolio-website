@@ -50,6 +50,11 @@ app.use('/api/v1/profile', profileRoutes);
 app.use('/api/v1/contact', contactRoutes); // This overrides the old /api/contact logic
 app.use('/api/v1/media', mediaRoutes);
 
+// Default Route
+app.get('/', (req, res) => {
+  res.status(200).json({ message: 'Welcome to the Portfolio API! 🚀' });
+});
+
 // MongoDB Connection
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
