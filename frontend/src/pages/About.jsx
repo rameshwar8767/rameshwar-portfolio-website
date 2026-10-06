@@ -12,8 +12,8 @@ const About = () => {
     const fetchData = async () => {
       try {
         const [profileRes, eduRes] = await Promise.all([
-          fetch("http://localhost:5000/api/v1/profile"),
-          fetch("http://localhost:5000/api/v1/education")
+          fetch(`${import.meta.env.VITE_API_URL}/api/v1/profile`),
+          fetch(`${import.meta.env.VITE_API_URL}/api/v1/education`)
         ]);
         
         const profileData = await profileRes.json();

@@ -38,11 +38,11 @@ const Dashboard = () => {
         const headers = { Authorization: `Bearer ${token}` };
 
         const [projRes, expRes, certRes, skillRes, msgRes] = await Promise.all([
-          fetch('http://localhost:5000/api/v1/projects', { headers }),
-          fetch('http://localhost:5000/api/v1/experience', { headers }),
-          fetch('http://localhost:5000/api/v1/certifications', { headers }),
-          fetch('http://localhost:5000/api/v1/skills', { headers }),
-          fetch('http://localhost:5000/api/v1/contact', { headers })
+          fetch(`${import.meta.env.VITE_API_URL}/api/v1/projects`, { headers }),
+          fetch(`${import.meta.env.VITE_API_URL}/api/v1/experience`, { headers }),
+          fetch(`${import.meta.env.VITE_API_URL}/api/v1/certifications`, { headers }),
+          fetch(`${import.meta.env.VITE_API_URL}/api/v1/skills`, { headers }),
+          fetch(`${import.meta.env.VITE_API_URL}/api/v1/contact`, { headers })
         ]);
 
         const [projData, expData, certData, skillData, msgData] = await Promise.all([

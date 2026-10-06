@@ -9,7 +9,7 @@ const MessagesManager = () => {
   const fetchMessages = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:5000/api/v1/contact', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/contact`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await res.json();
@@ -28,7 +28,7 @@ const MessagesManager = () => {
   const toggleRead = async (id, currentStatus) => {
     try {
       const token = localStorage.getItem('token');
-      await fetch(`http://localhost:5000/api/v1/contact/${id}`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/v1/contact/${id}`, {
         method: 'PUT',
         headers: { 
             'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ const MessagesManager = () => {
     if (!window.confirm('Are you sure you want to delete this message?')) return;
     try {
       const token = localStorage.getItem('token');
-      await fetch(`http://localhost:5000/api/v1/contact/${id}`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/v1/contact/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });

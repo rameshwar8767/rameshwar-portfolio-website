@@ -9,7 +9,7 @@ const Certifications = () => {
   useEffect(() => {
     const fetchCertifications = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/v1/certifications");
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/certifications`);
         const data = await res.json();
         if (data.success) {
           setCertifications(data.data);

@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
           return;
         }
 
-        const res = await fetch('http://localhost:5000/api/v1/auth/me', {
+        const res = await fetch('https://rameshwar-portfolio-website.vercel.app/api/v1/auth/me', {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (email, password) => {
-    const res = await fetch('http://localhost:5000/api/v1/auth/login', {
+    const res = await fetch('https://rameshwar-portfolio-website.vercel.app/api/v1/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
@@ -57,7 +57,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    await fetch('http://localhost:5000/api/v1/auth/logout', { method: 'POST' });
+    await fetch('https://rameshwar-portfolio-website.vercel.app/api/v1/auth/logout', { method: 'POST' });
     setAdmin(null);
     localStorage.removeItem('token');
   };

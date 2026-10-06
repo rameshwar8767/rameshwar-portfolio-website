@@ -21,7 +21,7 @@ const CertificationsManager = () => {
   const fetchCertifications = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:5000/api/v1/certifications', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/certifications`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await res.json();
@@ -57,7 +57,7 @@ const CertificationsManager = () => {
       submitData.append('certificateFile', file);
     }
 
-    const url = currentId ? `http://localhost:5000/api/v1/certifications/${currentId}` : 'http://localhost:5000/api/v1/certifications';
+    const url = currentId ? `${import.meta.env.VITE_API_URL}/api/v1/certifications/${currentId}` : `${import.meta.env.VITE_API_URL}/api/v1/certifications`;
     const method = currentId ? 'PUT' : 'POST';
 
     try {
@@ -108,7 +108,7 @@ const CertificationsManager = () => {
     if (!window.confirm('Are you sure you want to delete this certification? This will also remove the file from storage.')) return;
     try {
       const token = localStorage.getItem('token');
-      await fetch(`http://localhost:5000/api/v1/certifications/${id}`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/v1/certifications/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });

@@ -19,7 +19,7 @@ const EducationManager = () => {
   const fetchEducations = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:5000/api/v1/education', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/education`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await res.json();
@@ -48,7 +48,7 @@ const EducationManager = () => {
         dataToSubmit.endDate = '';
     }
 
-    const url = currentId ? `http://localhost:5000/api/v1/education/${currentId}` : 'http://localhost:5000/api/v1/education';
+    const url = currentId ? `${import.meta.env.VITE_API_URL}/api/v1/education/${currentId}` : `${import.meta.env.VITE_API_URL}/api/v1/education`;
     const method = currentId ? 'PUT' : 'POST';
 
     try {
@@ -105,7 +105,7 @@ const EducationManager = () => {
     if (!window.confirm('Are you sure you want to delete this education record?')) return;
     try {
       const token = localStorage.getItem('token');
-      await fetch(`http://localhost:5000/api/v1/education/${id}`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/v1/education/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });

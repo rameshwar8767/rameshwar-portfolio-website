@@ -20,7 +20,7 @@ const ProfileManager = () => {
 
   const fetchProfile = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/v1/profile');
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/profile`);
       const data = await res.json();
       if (data.success && data.data) {
         setFormData({
@@ -78,7 +78,7 @@ const ProfileManager = () => {
     }
 
     try {
-      const res = await fetch('http://localhost:5000/api/v1/profile', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/profile`, {
         method: 'PUT',
         headers: { 
             Authorization: `Bearer ${token}` 

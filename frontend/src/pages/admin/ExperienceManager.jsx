@@ -20,7 +20,7 @@ const ExperienceManager = () => {
   const fetchExperiences = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:5000/api/v1/experience', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/experience`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await res.json();
@@ -58,7 +58,7 @@ const ExperienceManager = () => {
         dataToSubmit.endDate = '';
     }
 
-    const url = currentId ? `http://localhost:5000/api/v1/experience/${currentId}` : 'http://localhost:5000/api/v1/experience';
+    const url = currentId ? `${import.meta.env.VITE_API_URL}/api/v1/experience/${currentId}` : `${import.meta.env.VITE_API_URL}/api/v1/experience`;
     const method = currentId ? 'PUT' : 'POST';
 
     try {
@@ -115,7 +115,7 @@ const ExperienceManager = () => {
     if (!window.confirm('Are you sure you want to delete this experience record?')) return;
     try {
       const token = localStorage.getItem('token');
-      await fetch(`http://localhost:5000/api/v1/experience/${id}`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/v1/experience/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });

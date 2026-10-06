@@ -16,7 +16,7 @@ export const useProfile = () => {
     }
 
     if (!fetchPromise) {
-      fetchPromise = fetch('http://localhost:5000/api/v1/profile')
+      fetchPromise = fetch('https://rameshwar-portfolio-website.vercel.app/api/v1/profile')
         .then(res => res.json())
         .then(data => {
           if (data.success) {

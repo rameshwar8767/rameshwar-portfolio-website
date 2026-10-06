@@ -23,7 +23,7 @@ const SkillsManager = () => {
   const fetchSkills = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:5000/api/v1/skills', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/skills`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await res.json();
@@ -47,7 +47,7 @@ const SkillsManager = () => {
 
     const token = localStorage.getItem('token');
     
-    const url = currentId ? `http://localhost:5000/api/v1/skills/${currentId}` : 'http://localhost:5000/api/v1/skills';
+    const url = currentId ? `${import.meta.env.VITE_API_URL}/api/v1/skills/${currentId}` : `${import.meta.env.VITE_API_URL}/api/v1/skills`;
     const method = currentId ? 'PUT' : 'POST';
 
     try {
@@ -96,7 +96,7 @@ const SkillsManager = () => {
     if (!window.confirm('Are you sure you want to delete this skill?')) return;
     try {
       const token = localStorage.getItem('token');
-      await fetch(`http://localhost:5000/api/v1/skills/${id}`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/v1/skills/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });

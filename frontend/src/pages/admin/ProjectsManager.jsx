@@ -23,7 +23,7 @@ const ProjectsManager = () => {
   const fetchProjects = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:5000/api/v1/projects', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/projects`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await res.json();
@@ -88,7 +88,7 @@ const ProjectsManager = () => {
       submitData.append('imageFile', file);
     }
 
-    const url = currentId ? `http://localhost:5000/api/v1/projects/${currentId}` : 'http://localhost:5000/api/v1/projects';
+    const url = currentId ? `${import.meta.env.VITE_API_URL}/api/v1/projects/${currentId}` : `${import.meta.env.VITE_API_URL}/api/v1/projects`;
     const method = currentId ? 'PUT' : 'POST';
 
     try {
@@ -138,7 +138,7 @@ const ProjectsManager = () => {
     if (!window.confirm('Are you sure you want to delete this project? This will also remove the image from storage.')) return;
     try {
       const token = localStorage.getItem('token');
-      await fetch(`http://localhost:5000/api/v1/projects/${id}`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/v1/projects/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });
