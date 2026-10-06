@@ -81,7 +81,7 @@ const About = () => {
                 <img
                   src={profile?.profileImageUrl || 'https://via.placeholder.com/400'}
                   alt={profile?.name || 'Profile'}
-                  className="w-full h-full object-cover transition-all duration-700 scale-100 group-hover:scale-110 brightness-95 group-hover:brightness-105"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out scale-100 group-hover:scale-110 group-hover:rotate-2"
                 />
               </div>
 

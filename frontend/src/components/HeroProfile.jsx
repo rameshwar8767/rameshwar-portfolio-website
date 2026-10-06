@@ -33,7 +33,7 @@ const HeroProfile = ({ image }) => {
               <img
                 src={image}
                 alt="Rameshwar Mane"
-                className="w-full h-full object-cover transition-all duration-700 scale-100 group-hover:scale-110 brightness-95 group-hover:brightness-105"
+                className="w-full h-full object-cover transition-transform duration-700 ease-out scale-100 group-hover:scale-110 group-hover:rotate-2"
               />
             ) : (
               <div className="relative w-full h-full flex items-center justify-center">
