@@ -27,7 +27,10 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:5173', // Vite default port
+  origin: [
+    'http://localhost:5173', 
+    process.env.FRONTEND_URL // Vercel: Set this in backend environment variables to your frontend URL
+  ].filter(Boolean),
   credentials: true
 }));
 app.use(express.json());
@@ -51,8 +54,14 @@ app.use('/api/v1/media', mediaRoutes);
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
     console.log('Connected to MongoDB');
-    app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
-    });
+    // Only listen if not deployed on Vercel, as Vercel handles the server execution
+    if (!process.env.VERCEL) {
+      app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+      });
+    }
   })
   .catch((err) => console.error('MongoDB connection error:', err));
+
+// Export the app for Vercel Serverless Functions
+export default app;

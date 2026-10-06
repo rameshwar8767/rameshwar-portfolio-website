@@ -113,6 +113,34 @@ npm run dev
 - **Frontend**: http://localhost:5173 (Default Vite port)
 - **Backend API**: http://localhost:5000 (Default Express port)
 
+## ☁️ Deployment (Vercel)
+
+This project is configured to be deployed easily on Vercel. 
+
+### Deploying the Frontend
+
+Since this is a monorepo, you need to specify the `frontend` folder when deploying to Vercel:
+
+1. Push your code to a GitHub repository.
+2. Log in to [Vercel](https://vercel.com/) and click **Add New** > **Project**.
+3. Import your GitHub repository.
+4. In the **Configure Project** section:
+   - **Framework Preset**: Vite
+   - **Root Directory**: Select `frontend` from the dropdown.
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+5. Add any necessary environment variables for your frontend (e.g., `VITE_API_URL` pointing to your hosted backend).
+6. Click **Deploy**. Vercel will use the `vercel.json` file already included in the `frontend` folder to handle SPA routing correctly.
+
+### Deploying the Backend
+
+*Note: Express backends are typically hosted on platforms like **Render**, **Railway**, or **Heroku**.* 
+
+If you strictly want to host the Express backend on **Vercel** as well, you'll need to configure it as Vercel Serverless Functions:
+1. Create a `vercel.json` inside the `backend` directory.
+2. Update your `server.js` to export the Express app (`module.exports = app;`) instead of calling `app.listen()`.
+3. Create a separate Vercel project for the `backend` folder following the same steps as the frontend.
+
 ## 📜 License
 
 This project is open-source and available under the [MIT License](LICENSE).
