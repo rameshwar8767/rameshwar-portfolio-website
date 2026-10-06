@@ -5,6 +5,9 @@ import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import helmet from 'helmet';
+import mongoSanitize from 'express-mongo-sanitize';
+import rateLimit from 'express-rate-limit';
 
 // Route Imports
 import authRoutes from './routes/auth.js';
@@ -25,7 +28,26 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
+// ==========================================
+// SECURITY MIDDLEWARES
+// ==========================================
+// 1. Set secure HTTP headers
+app.use(helmet({ crossOriginResourcePolicy: false })); // Disabled CORP slightly for easier image loading if needed
+
+// 2. Data sanitization against NoSQL query injection
+app.use(mongoSanitize());
+
+// 3. Rate Limiting to prevent brute-force & DDoS attacks
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 200, // Limit each IP to 200 requests per 15 minutes
+  message: { success: false, message: 'Too many requests from this IP, please try again after 15 minutes.' }
+});
+app.use('/api', apiLimiter);
+
+// ==========================================
+// STANDARD MIDDLEWARE
+// ==========================================
 app.use(cors({
   origin: function (origin, callback) {
     // Allow localhost, any explicitly set FRONTEND_URL, or any Vercel preview/production deployment
