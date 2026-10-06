@@ -29,12 +29,12 @@ const HeroProfile = ({ image }) => {
             className="absolute -inset-4 rounded-full border border-slate-200 dark:border-slate-800 border-t-emerald-500/50"
           />
 
-          <div className="absolute inset-2 overflow-hidden rounded-full border-4 border-white dark:border-[#0a0a0a] shadow-2xl bg-slate-100 dark:bg-slate-900 transition-transform duration-500 group-hover:scale-105">
+          <div className="absolute inset-2 overflow-hidden rounded-full border-4 border-white dark:border-[#0a0a0a] shadow-2xl bg-slate-100 dark:bg-slate-900 transition-all duration-700 group-hover:shadow-[0_0_40px_rgba(16,185,129,0.4)] group-hover:border-emerald-500/30">
             {image ? (
               <img
                 src={image}
                 alt="Rameshwar Mane"
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                className="w-full h-full object-cover transition-all duration-700 scale-100 group-hover:scale-110 brightness-95 group-hover:brightness-105"
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center">

@@ -77,11 +77,11 @@ const About = () => {
             <div className="relative group w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96">
               <div className="absolute inset-0 rounded-full border-2 border-emerald-500/20 group-hover:border-emerald-500/50 transition-colors duration-500 shadow-[0_0_30px_rgba(16,185,129,0.1)] group-hover:shadow-[0_0_40px_rgba(16,185,129,0.2)]" />
 
-              <div className="absolute inset-4 rounded-full overflow-hidden border-4 border-white dark:border-[#0a0a0a] bg-slate-100 dark:bg-slate-900">
+              <div className="absolute inset-4 rounded-full overflow-hidden border-4 border-white dark:border-[#0a0a0a] bg-slate-100 dark:bg-slate-900 transition-all duration-700 group-hover:shadow-[0_0_40px_rgba(16,185,129,0.4)] group-hover:border-emerald-500/30">
                 <img
                   src={profile?.profileImageUrl || 'https://via.placeholder.com/400'}
                   alt={profile?.name || 'Profile'}
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
+                  className="w-full h-full object-cover transition-all duration-700 scale-100 group-hover:scale-110 brightness-95 group-hover:brightness-105"
                 />
               </div>
 
