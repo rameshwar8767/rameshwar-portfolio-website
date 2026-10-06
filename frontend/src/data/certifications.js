@@ -1,0 +1,42 @@
+export const certifications = [
+  {
+    id: "aws-ccp",
+    title: "AWS Cloud Practitioner",
+    subtitle: "Training & Certification",
+    date: "Feb 2026",
+    issuer: "Amazon Web Services",
+    image: "https://www.credly.com/badges/215d4b84-0295-438a-9613-7af3b3781668/linked_in_profile",
+  },
+  {
+    id: "aws",
+    title: "AWS Cloud Practitioner Essentials",
+    subtitle: "Training & Certification",
+    date: "Sep 2025",
+    issuer: "Amazon Web Services",
+    image: "/certs/aws.png",
+  },
+  {
+    id: "apna-college",
+    title: "Full Stack Web Development",
+    subtitle: "Certification Of Completion",
+    date: "Nov 2024",
+    issuer: "Apna College",
+    image: "/certs/apna.png",
+  },
+  {
+    id: "oneroadmap",
+    title: "Full Stack Web Development",
+    subtitle: "Certificate Of Achievement",
+    date: "Feb 2025",
+    issuer: "OneRoadmap",
+    image: "/certs/one.png",
+  },
+  {
+    id: "chaicode",
+    title: "GenAi With Python",
+    subtitle: "Certificate Of Completion",
+    date: "Feb 2026",
+    issuer: "ChaiCode",
+    image: "/certs/genai.png",
+  },
+];

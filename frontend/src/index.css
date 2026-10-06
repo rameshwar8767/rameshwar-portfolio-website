@@ -1,0 +1,888 @@
+/* =========================================================
+   GOOGLE FONTS
+========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* =========================================================
+   DESIGN TOKENS
+========================================================= */
+
+@layer base {
+  :root {
+    /* Brand */
+    --primary: #ffffff;
+    --primary-dark: #a3a3a3;
+    --secondary: #3b82f6;
+    --accent: #10b981;
+
+    /* Background */
+    --background: #fafafa;
+    --surface: #ffffff;
+
+    /* Text */
+    --foreground: #171717;
+    --muted: #737373;
+
+    /* Border */
+    --border: #e5e5e5;
+
+    /* Radius */
+    --radius-sm: 8px;
+    --radius: 12px;
+    --radius-lg: 16px;
+
+    /* Shadow */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+    /* Blur */
+    --blur: blur(12px);
+
+    color-scheme: light;
+  }
+
+  html.dark {
+    --background: #050505;
+    --surface: #121212;
+    --foreground: #ededed;
+    --muted: #a3a3a3;
+    --border: #262626;
+
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.5);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.5);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.5);
+
+    color-scheme: dark;
+  }
+}
+
+/* =========================================================
+   RESET
+========================================================= */
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+
+    font-family: "Inter", sans-serif;
+
+    -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    min-height: 100vh;
+    color: var(--foreground);
+    background-color: var(--background);
+    font-family: "Inter", sans-serif;
+    transition: background-color .35s ease, color .35s ease;
+    overflow-x: hidden;
+    line-height: 1.6;
+    background-image: radial-gradient(circle at top left, rgba(255, 255, 255, 0.02), transparent 40%);
+  }
+
+  html.dark body {
+    background-image: 
+      radial-gradient(circle at 15% 50%, rgba(255, 255, 255, 0.03), transparent 25%),
+      radial-gradient(circle at 85% 30%, rgba(255, 255, 255, 0.03), transparent 25%);
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  button,
+  input,
+  textarea {
+    font: inherit;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  ::selection {
+    background: rgba(6,182,212,.25);
+    color: inherit;
+  }
+}
+
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
+
+@layer base {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: "Space Grotesk", sans-serif;
+    line-height: 1.15;
+    letter-spacing: -.03em;
+  }
+
+  h1 {
+    font-size: clamp(2.8rem,6vw,5.8rem);
+    font-weight: 800;
+  }
+
+  h2 {
+    font-size: clamp(2.2rem,5vw,4rem);
+    font-weight: 800;
+  }
+
+  h3 {
+    font-size: clamp(1.5rem,3vw,2rem);
+    font-weight: 700;
+  }
+
+  p {
+    color: var(--muted);
+  }
+}
+
+/* =========================================================
+   LAYOUT
+========================================================= */
+
+@layer components {
+
+  .section-container {
+    width: 100%;
+
+    max-width: 1320px;
+
+    margin-inline: auto;
+
+    padding-inline: 1.5rem;
+
+    padding-block: 6rem;
+  }
+
+  @media (min-width:768px) {
+
+    .section-container {
+
+      padding-inline: 3rem;
+
+      padding-block: 7rem;
+    }
+  }
+
+  @media (min-width:1280px) {
+
+    .section-container {
+
+      padding-inline: 2rem;
+
+      padding-block: 8rem;
+    }
+  }
+
+}
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+@layer components {
+
+  .section-title {
+
+    display: inline-block;
+
+    margin-bottom: 1.5rem;
+
+    font-weight: 800;
+
+    background:
+      linear-gradient(
+        135deg,
+        #ffffff,
+        #cbd5e1
+      );
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+  }
+
+  html:not(.dark) .section-title {
+
+    background:
+      linear-gradient(
+        135deg,
+        #0f172a,
+        #475569
+      );
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+  }
+
+}
+
+/* =========================================================
+   GLASS CARD
+========================================================= */
+
+@layer components {
+  .glass-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    backdrop-filter: var(--blur);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+    transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+  }
+
+  .glass-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+@layer components {
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .75rem;
+    padding: 12px 24px;
+    border-radius: var(--radius-sm);
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #000000;
+    background: #ffffff;
+    transition: all .2s ease;
+    border: 1px solid transparent;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .75rem;
+    padding: 12px 24px;
+    border-radius: var(--radius-sm);
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--foreground);
+    border: 1px solid var(--border);
+    background: transparent;
+    transition: all .2s ease;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--muted);
+    background: rgba(255,255,255,0.03);
+    transform: translateY(-2px);
+  }
+}
+
+/* =========================================================
+   COMMON UTILITIES
+========================================================= */
+
+@layer utilities {
+
+  .text-gradient {
+
+    background:
+      linear-gradient(
+        135deg,
+        #06b6d4,
+        #4f46e5
+      );
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+  }
+
+  .border-gradient {
+
+    border: 1px solid rgba(6,182,212,.3);
+  }
+
+  .bg-grid {
+
+    background-image:
+
+      linear-gradient(
+        rgba(148,163,184,.08) 1px,
+        transparent 1px),
+
+      linear-gradient(
+        90deg,
+        rgba(148,163,184,.08) 1px,
+        transparent 1px);
+
+    background-size: 40px 40px;
+  }
+
+  .glass {
+
+    backdrop-filter: blur(20px);
+
+    background: rgba(255,255,255,.08);
+  }
+
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes float {
+
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+
+}
+
+@keyframes pulseGlow {
+
+  0% {
+    box-shadow: 0 0 0 rgba(6,182,212,.15);
+  }
+
+  50% {
+    box-shadow: 0 0 45px rgba(6,182,212,.35);
+  }
+
+  100% {
+    box-shadow: 0 0 0 rgba(6,182,212,.15);
+  }
+
+}
+
+@keyframes shimmer {
+
+  0% {
+    transform: translateX(-150%);
+  }
+
+  100% {
+    transform: translateX(150%);
+  }
+
+}
+
+@keyframes fadeUp {
+
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+@keyframes scaleIn {
+
+  from {
+    opacity: 0;
+    transform: scale(.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+}
+
+@keyframes rotateSlow {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+@keyframes gradientMove {
+
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+
+}
+
+/* =========================================================
+   ANIMATION CLASSES
+========================================================= */
+
+@layer utilities {
+
+  .animate-float {
+    animation: float 5s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: pulseGlow 3s infinite;
+  }
+
+  .animate-scale {
+    animation: scaleIn .8s ease both;
+  }
+
+  .animate-fade-up {
+    animation: fadeUp .8s ease both;
+  }
+
+  .animate-spin-slow {
+    animation: rotateSlow 18s linear infinite;
+  }
+
+  .animate-gradient {
+
+    background-size: 250% 250%;
+
+    animation: gradientMove 8s ease infinite;
+  }
+
+}
+
+/* =========================================================
+   SHIMMER EFFECT
+========================================================= */
+
+.shimmer {
+
+  position: relative;
+
+  overflow: hidden;
+
+}
+
+.shimmer::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  width: 40%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.35),
+      transparent
+    );
+
+  animation: shimmer 2.4s infinite;
+
+}
+
+/* =========================================================
+   GLOW HELPERS
+========================================================= */
+
+.glow-cyan {
+
+  box-shadow:
+    0 0 45px rgba(6,182,212,.18);
+
+}
+
+.glow-indigo {
+
+  box-shadow:
+    0 0 45px rgba(79,70,229,.20);
+
+}
+
+.glow-purple {
+
+  box-shadow:
+    0 0 45px rgba(139,92,246,.18);
+
+}
+
+/* =========================================================
+   HOVER UTILITIES
+========================================================= */
+
+.hover-lift {
+
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease;
+
+}
+
+.hover-lift:hover {
+
+  transform: translateY(-8px);
+
+}
+
+.hover-scale {
+
+  transition: transform .3s ease;
+
+}
+
+.hover-scale:hover {
+
+  transform: scale(1.04);
+
+}
+
+.hover-rotate {
+
+  transition: transform .35s ease;
+
+}
+
+.hover-rotate:hover {
+
+  transform: rotate(3deg);
+
+}
+
+/* =========================================================
+   IMAGE EFFECTS
+========================================================= */
+
+.image-zoom {
+
+  overflow: hidden;
+
+}
+
+.image-zoom img {
+
+  transition:
+    transform .7s ease;
+
+}
+
+.image-zoom:hover img {
+
+  transform: scale(1.08);
+
+}
+
+/* =========================================================
+   CUSTOM SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+
+  width: 10px;
+
+}
+
+::-webkit-scrollbar-track {
+
+  background: transparent;
+
+}
+
+::-webkit-scrollbar-thumb {
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      #06b6d4,
+      #4f46e5
+    );
+
+}
+
+::-webkit-scrollbar-thumb:hover {
+
+  background:
+    linear-gradient(
+      #0891b2,
+      #4338ca
+    );
+
+}
+
+/* Firefox */
+
+* {
+
+  scrollbar-width: thin;
+
+  scrollbar-color: #06b6d4 transparent;
+
+}
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+input,
+textarea,
+select {
+
+  transition:
+    border-color .3s,
+    box-shadow .3s,
+    background .3s;
+
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+
+  outline: none;
+
+  border-color: rgba(6,182,212,.45);
+
+  box-shadow:
+    0 0 0 4px rgba(6,182,212,.12);
+
+}
+
+/* =========================================================
+   LINKS
+========================================================= */
+
+.link-hover {
+
+  position: relative;
+
+}
+
+.link-hover::after {
+
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+
+  bottom: -4px;
+
+  width: 0;
+
+  height: 2px;
+
+  background: #06b6d4;
+
+  transition: width .3s ease;
+
+}
+
+.link-hover:hover::after {
+
+  width: 100%;
+
+}
+
+/* =========================================================
+   BACKGROUND HELPERS
+========================================================= */
+
+.bg-radial {
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(6,182,212,.10),
+      transparent 70%
+    );
+
+}
+
+.bg-gradient-primary {
+
+  background:
+    linear-gradient(
+      135deg,
+      #06b6d4,
+      #4f46e5
+    );
+
+}
+
+.bg-gradient-dark {
+
+  background:
+    linear-gradient(
+      135deg,
+      #020617,
+      #0f172a
+    );
+
+}
+
+/* =========================================================
+   TEXT HELPERS
+========================================================= */
+
+.text-shadow {
+
+  text-shadow:
+    0 10px 35px rgba(0,0,0,.18);
+
+}
+
+.text-balance {
+
+  text-wrap: balance;
+
+}
+
+/* =========================================================
+   BORDER EFFECTS
+========================================================= */
+
+.border-glow {
+
+  border: 1px solid rgba(6,182,212,.22);
+
+}
+
+.border-glow:hover {
+
+  border-color: rgba(6,182,212,.45);
+
+}
+
+/* =========================================================
+   RESPONSIVE HELPERS
+========================================================= */
+
+@media (max-width:1024px){
+
+  .section-container{
+
+    padding-top:5rem;
+
+    padding-bottom:5rem;
+
+  }
+
+}
+
+@media (max-width:768px){
+
+  .section-title{
+
+    text-align:center;
+
+  }
+
+}
+
+@media (max-width:640px){
+
+  .glass-card{
+
+    border-radius:22px;
+
+  }
+
+  .btn-primary,
+  .btn-secondary{
+
+    width:100%;
+
+  }
+
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+:focus-visible{
+
+  outline:2px solid #06b6d4;
+
+  outline-offset:3px;
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+  *,
+  *::before,
+  *::after{
+
+    animation:none !important;
+
+    transition:none !important;
+
+    scroll-behavior:auto !important;
+
+  }
+
+}
