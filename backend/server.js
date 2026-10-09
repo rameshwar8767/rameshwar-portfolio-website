@@ -6,7 +6,6 @@ import cookieParser from 'cookie-parser';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import helmet from 'helmet';
-import mongoSanitize from 'express-mongo-sanitize';
 import rateLimit from 'express-rate-limit';
 
 // Route Imports
@@ -35,7 +34,8 @@ const PORT = process.env.PORT || 5000;
 app.use(helmet({ crossOriginResourcePolicy: false })); // Disabled CORP slightly for easier image loading if needed
 
 // 2. Data sanitization against NoSQL query injection
-app.use(mongoSanitize());
+// Disabled because express-mongo-sanitize is incompatible with Express 5 (req.query is read-only)
+// app.use(mongoSanitize());
 
 // 3. Rate Limiting to prevent brute-force & DDoS attacks
 const apiLimiter = rateLimit({
